@@ -1,5 +1,4 @@
 import "dotenv/config";
-import dns from "node:dns";
 import mongoose from "mongoose";
 import http from "node:http";
 import {
@@ -9,10 +8,8 @@ import {
   updateTodoRoute,
 } from "./routes/todos.js";
 
-dns.setServers(["8.8.8.8", "8.8.4.4"]);
-const PORT = 5000;
-const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/todo-backend";
+const PORT = process.env.PORT || 5000;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 const server = http.createServer(async (req, res) => {
   res.setHeader("Content-Type", "application/json; charset=utf-8");
@@ -65,6 +62,9 @@ const server = http.createServer(async (req, res) => {
 });
 
 async function start() {
+  if (!MONGODB_URI) {
+    throw new Error("MONGODB_URI is not set");
+  }
   await mongoose.connect(MONGODB_URI);
   console.log("연결성공");
 
