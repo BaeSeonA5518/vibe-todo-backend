@@ -1,0 +1,21 @@
+{
+  "name": "todo-backend",
+  "version": "1.0.0",
+  "description": "Todo API backend",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dns": "^0.2.2",
+    "dotenv": "^17.4.1",
+    "express": "^5.2.1",
+    "mogoose": "^0.0.1-security",
+    "mongoose": "^9.3.3"
+  }
+}
